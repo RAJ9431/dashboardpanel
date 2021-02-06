@@ -1,0 +1,25 @@
+<mat-nav-list>
+    <div class="profile-card">
+        <div class="header">
+            <h2>user</h2>
+            <h3>email</h3>
+        </div>
+        <img src="">
+    </div>
+    <mat-divider></mat-divider>
+    <h2 matSubheader>Pages</h2>
+    <a mat-list-item routerLink="/">Dashboard</a>
+    <a mat-list-item routerLink="/posts">Posts</a>
+    <a mat-list-item routerLink="/articles">Articles</a>
+    <a mat-list-item routerLink="/seller">Seller</a>
+    <a mat-list-item routerLink="/admin">Admin</a>
+    <mat-divider>
+    </mat-divider>
+    <h2 matSubheader>Tools</h2>
+    <mat-list-item routerLinkActive="list-item-active" routerLink="/contacts">
+        <mat-icon>import_contacts</mat-icon>Contacts
+    </mat-list-item>
+    <mat-list-item routerLink="/users">
+        <mat-icon>import_user</mat-icon>
+    </mat-list-item>
+</mat-nav-list>
