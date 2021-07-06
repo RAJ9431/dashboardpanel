@@ -9,30 +9,23 @@ import { DashboardComponent } from './modules/dashboard/dashboard.component';
 import { PostsComponent } from './modules/posts/posts.component';
 import { SellerComponent } from './modules/seller/seller.component';
 
+import { AuthGuard } from './shared/auth.guard';
+
 const routes: Routes = [
+  {path: '', redirectTo: 'login', pathMatch: 'full'},
   {
     path: 'login',
     component: ControlComponent
   },
+  {path: 'signup', component: RegisterComponent},
  {
-  path: '',
+  path: 'profile/:id',
   component: DefaultComponent,
-  children: [{
-    path: '',
-    component: DashboardComponent
-  },
-{
-  path: 'posts',
-  component: PostsComponent
-},
-{
-  path: 'seller',
-  component: SellerComponent
-},
-{
-  path: 'admin',
-  component: AdminComponent
-}]
+  canActivate: [AuthGuard],
+  children: [
+    {path: 'profile/:id/dash', component: DashboardComponent},
+    {path: 'profile/:id/posts',  component: PostsComponent}
+   ]
 }
 ];
 

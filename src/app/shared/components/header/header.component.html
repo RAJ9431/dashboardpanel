@@ -15,7 +15,7 @@
 <mat-icon>person_outline</mat-icon>
 </button>
                     <mat-menu #menu="matMenu">
-                        <button mat-menu-item><mat-icon>exit_to_app</mat-icon></button> Signout
+                        <button (click)="logout()" *ngIf="this.authService.isLoggedIn" mat-menu-item><mat-icon>exit_to_app</mat-icon></button> Signout
                     </mat-menu>
                 </li>
             </ul>

@@ -1,8 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { ControlModule  } from '../control/control.module';
 import { AreaComponent } from './widgets/area/area.component';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatIconModule} from '@angular/material/icon';
@@ -15,6 +18,7 @@ import { RouterModule } from '@angular/router';
 import { HighchartsChartModule} from 'highcharts-angular';
 import { CardComponent } from './widgets/card/card.component';
 
+
 @NgModule({
   declarations: [
     HeaderComponent,
@@ -24,6 +28,7 @@ import { CardComponent } from './widgets/card/card.component';
     CardComponent
   ],
   imports: [
+    HttpClientModule,
     CommonModule,
     MatDividerModule,
     MatToolbarModule,
@@ -33,7 +38,8 @@ import { CardComponent } from './widgets/card/card.component';
     MatMenuModule,
     MatListModule,
     RouterModule,
-    HighchartsChartModule
+    HighchartsChartModule,
+    ControlModule
   ],
   exports: [
     HeaderComponent,
