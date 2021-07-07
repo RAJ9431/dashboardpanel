@@ -6,8 +6,8 @@ const { check, validationResult } = require('express-validator');
 /////////////////Product API
 
 // To get All Products
-productrouter.route('/allproduct').get((req, res, next)=>{
-    productSchema.find((error, response) => {
+productrouter.route('/allproduct/:id').get((req, res, next)=>{
+    productSchema.find({seller_id : req.params.id},(error, response) => {
         if (error) {
             return next(error)
         } else {
@@ -22,11 +22,12 @@ productrouter.post('/add-product',[
     check('name').not().isEmpty().isLength({ min: 3 }).withMessage('Name must be atleast 3 characters long'),
     check('category').not().isEmpty().isLength({min: 3}),
     check('price').not().isEmpty().isNumeric(),
-    check('quantity').not().isEmpty().isNumeric()
+    check('quantity').not().isEmpty().isNumeric(),
+    check('seller_id').not().isEmpty()
 ],
 (req, res, next) => {
     const errors = validationResult(req);
-    console.log(req);
+    //console.log(req);
 
     if (!errors.isEmpty()) {
         return res.status(422).json(errors.array());
@@ -37,7 +38,8 @@ productrouter.post('/add-product',[
                 name: req.body.name,
                 category: req.body.category,
                 price: req.body.price,
-                quantity: req.body.quantity
+                quantity: req.body.quantity,
+                seller_id: req.body.seller_id
             });
             product.save().then((response) => {
                 res.status(201).json({

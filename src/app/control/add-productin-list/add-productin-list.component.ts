@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/shared/auth.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-productin-list',
@@ -10,18 +10,19 @@ import { Router } from '@angular/router';
 })
 export class AddProductinListComponent implements OnInit {
   form: FormGroup;
-  constructor(public authService: AuthService, public router: Router, public fb: FormBuilder) {
-    this.form=this.fb.group({
+  constructor(public authService: AuthService, public router: Router, public fb: FormBuilder, private actRoute: ActivatedRoute) {
+    console.log(localStorage.getItem('_id'));
+      this.form=this.fb.group({
       name: [''],
       category: [''],
       price: [],
-      quantity: []
+      quantity: [],
+     seller_id:[localStorage.getItem('_id')]
     })
    }
 
   
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {  }
 
 
   addToList(): void{
