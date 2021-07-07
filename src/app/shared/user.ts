@@ -12,6 +12,7 @@ export class Product{
     category: string;
     price: Number;
     quantity: Number;
+    seller_id: Number;
 }
 
 export class Customer{

@@ -34,6 +34,7 @@ export class AuthService {
     return this.http.post<any>(`${this.endpoint}/api/admin-signin`, user)
       .subscribe((res: any) => {
         localStorage.setItem('access_token', res.token)
+        localStorage.setItem('_id', res._id)
         this.getUserProfile(res._id).subscribe((res) => {
           this.currentUser = res;
           this.router.navigate(['profile/' + res.msg._id]);
@@ -80,7 +81,8 @@ export class AuthService {
 
   // get ALL products
   getAllProducts(): Observable<any> {
-    let api = `${this.endpoint}/api1/allproduct`;
+    let seller_id=localStorage.getItem('_id');
+    let api = `${this.endpoint}/api1/allproduct/${seller_id}`;
     return this.http.get(api, { headers: this.headers }).pipe(
       catchError(this.handleError)
     )

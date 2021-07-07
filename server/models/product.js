@@ -16,6 +16,10 @@ let productSchema=new Schema({
     },quantity:{
         type: Number,
         require: true
+    },
+    seller_id:{
+    type: String,
+    required: true
     }
 },{
     collection: 'product-details'
