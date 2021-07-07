@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AddProductinListComponent } from './control/add-productin-list/add-productin-list.component';
 import { ControlComponent } from './control/control.component';
 import { LoginComponent } from './control/login/login.component';
 import { RegisterComponent } from './control/register/register.component';
 import { DefaultComponent } from './layouts/default/default.component';
-import { AdminComponent } from './modules/admin/admin.component';
 import { DashboardComponent } from './modules/dashboard/dashboard.component';
 import { PostsComponent } from './modules/posts/posts.component';
-import { SellerComponent } from './modules/seller/seller.component';
+
 
 import { AuthGuard } from './shared/auth.guard';
 
 const routes: Routes = [
-  {path: '', redirectTo: 'login', pathMatch: 'full'},
+  {path: '', component: LoginComponent},
   {
     path: 'login',
     component: ControlComponent
@@ -24,7 +24,8 @@ const routes: Routes = [
   canActivate: [AuthGuard],
   children: [
     {path: 'profile/:id/dash', component: DashboardComponent},
-    {path: 'profile/:id/posts',  component: PostsComponent}
+    {path: 'profile/:id/posts',  component: PostsComponent},
+    {  path: 'profile/:id/addProductinlist', component: AddProductinListComponent }
    ]
 }
 ];

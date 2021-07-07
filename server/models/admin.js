@@ -19,5 +19,7 @@ let adminSchema = new Schema({
     collection: 'seller-info'
 })
 
+
+
 adminSchema.plugin(uniqueValidator, { message: 'Email already in use.' });
 module.exports = mongoose.model('admin', adminSchema)

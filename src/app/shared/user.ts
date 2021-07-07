@@ -6,6 +6,14 @@ export class Admin {
     admintype: string;
 }
 
+export class Product{
+    _id: string;
+    name: string;
+    category: string;
+    price: Number;
+    quantity: Number;
+}
+
 export class Customer{
     _id: string;
     name: string;

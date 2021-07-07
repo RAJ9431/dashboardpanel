@@ -11,12 +11,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCommonModule } from '@angular/material/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { AddProductinListComponent } from './add-productin-list/add-productin-list.component';
 
 @NgModule({
   declarations: [
     ControlComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    AddProductinListComponent
   ],
   imports: [
     CommonModule,
@@ -32,7 +34,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
   ],
   exports: [
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    AddProductinListComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
