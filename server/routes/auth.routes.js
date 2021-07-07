@@ -3,6 +3,7 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const router = express.Router();
 const adminSchema = require("../models/admin");
+
 const authorize = require("../middlewares/auth");
 const { check, validationResult } = require('express-validator');
 
@@ -146,4 +147,6 @@ router.route('/delete-admin/:id').delete((req, res, next) => {
         }
     })
 })
+
+
 module.exports = router;

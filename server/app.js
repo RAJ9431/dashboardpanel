@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const api = require('./routes/auth.routes');
-const api1 = require('./routes/customer.routes');
+const api1 = require('./routes/product.routes');
 const dbConfig=require('./database/db');
 
 // MongoDB conection
@@ -33,7 +33,7 @@ app.use(cors());
 //app.use('/public', express.static('public'));
 
 app.use('/api', api)
-app.use('/api1', api)
+app.use('/api1', api1)
 
 // Define PORT
 const port = process.env.PORT || 4000;

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Admin } from './user';
+import { Admin, Product } from './user';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 
 export class AuthService {
-  endpoint: string = 'http://localhost:4000/api';
+  endpoint: string = 'http://localhost:4000';
   headers = new HttpHeaders().set('Content-Type', 'application/json');
   currentUser = {};
 
@@ -22,7 +22,7 @@ export class AuthService {
 
   // Sign-up
   signUp(user: Admin): Observable<any> {
-    let api = `${this.endpoint}/register-admin`;
+    let api = `${this.endpoint}/api/register-admin`;
     return this.http.post(api, user)
       .pipe(
         catchError(this.handleError)
@@ -31,7 +31,7 @@ export class AuthService {
 
   // Sign-in
   signIn(user: Admin) {
-    return this.http.post<any>(`${this.endpoint}/admin-signin`, user)
+    return this.http.post<any>(`${this.endpoint}/api/admin-signin`, user)
       .subscribe((res: any) => {
         localStorage.setItem('access_token', res.token)
         this.getUserProfile(res._id).subscribe((res) => {
@@ -60,13 +60,35 @@ export class AuthService {
 
   // User profile
   getUserProfile(id): Observable<any> {
-    let api = `${this.endpoint}/admin-profile/${id}`;
+    let api = `${this.endpoint}/api/admin-profile/${id}`;
     return this.http.get(api, { headers: this.headers }).pipe(
       map((res: Response) => {
         return res || {}
       }),
       catchError(this.handleError)
     )
+  }
+
+
+  // Adding products to collection
+  addProduct(products: Product): Observable<any> {
+    let api = `${this.endpoint}/api1/add-product`;
+    return this.http.post(api, products).pipe(
+        catchError(this.handleError)
+      )
+  }
+
+  // get ALL products
+  getAllProducts(): Observable<any> {
+    let api = `${this.endpoint}/api1/allproduct`;
+    return this.http.get(api, { headers: this.headers }).pipe(
+      catchError(this.handleError)
+    )
+  }
+
+  deleteProduct(product: Product): Observable<any>{
+    let api= `${this.endpoint}/api1/delete-product/${product._id}`;
+    return this.http.delete(api, {headers: this.headers}).pipe(catchError(this.handleError))
   }
 
   // Error 
